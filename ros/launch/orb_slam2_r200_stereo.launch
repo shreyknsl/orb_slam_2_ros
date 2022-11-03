@@ -2,8 +2,8 @@
   <node name="orb_slam2_stereo" pkg="orb_slam2_ros"
       type="orb_slam2_ros_stereo" output="screen">
 
-       <remap from="image_left/image_color_rect" to="/cam_front/left/image_rect_color" />
-       <remap from="image_right/image_color_rect" to="/cam_front/right/image_rect_color" />
+       <remap from="image_left/image_color_rect" to="/robotA/cam100/image_raw" />
+       <remap from="image_right/image_color_rect" to="/robotA/cam101/image_raw" />
 
        <param name="publish_pointcloud" type="bool" value="true" />
        <param name="publish_pose" type="bool" value="true" />
@@ -28,7 +28,7 @@
 
        <!-- Camera parameters -->
        <!-- Camera frames per second -->
-       <param name="camera_fps" type="int" value="30" />
+       <param name="camera_fps" type="int" value="20" />
        <!-- Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale) -->
        <param name="camera_rgb_encoding" type="bool" value="true" />
        <!-- Close/Far threshold. Baseline times. -->
@@ -40,16 +40,20 @@
         <!--If the node should wait for a camera_info topic to take the camera calibration data-->
        <param name="load_calibration_from_cam" type="bool" value="false" />
        <!-- Camera calibration and distortion parameters (OpenCV) -->
-      <param name="camera_fx" type="double" value="632.7927856445312" />
-      <param name="camera_fy" type="double" value="626.8605346679688" />
-      <param name="camera_cx" type="double" value="311.43603515625" />
-      <param name="camera_cy" type="double" value="248.0950164794922" />
+       <param name="camera_fx" type="double" value="369.94195057001514" />
+       <param name="camera_fy" type="double" value="368.84102736841027" />
+       <param name="camera_cx" type="double" value="327.40983695129427" />
+       <param name="camera_cy" type="double" value="256.3319635095666" />      
+       
        <!-- Camera calibration and distortion parameters (OpenCV) -->
-      <param name="camera_k1" type="double" value="-0.09097914397716522" />
-      <param name="camera_k2" type="double" value="0.06503549218177795" />
-      <param name="camera_p1" type="double" value="0.000849052332341671" />
-      <param name="camera_p2" type="double" value="0.001785792293958366" />
+       <param name="camera_k1" type="double" value="0.0" />
+       <param name="camera_k2" type="double" value="0.0" />
+       <param name="camera_p1" type="double" value="0.0" />
+       <param name="camera_p2" type="double" value="0.0" />
+       <param name="camera_k3" type="double" value="0.0" />
       <!-- IR projector baseline times fx (aprox.) -->
-      <param name="camera_baseline" type="double" value="30.464328718" />
+      <!-- <param name="camera_baseline" type="double" value="30.464328718" /> -->
+       <param name="camera_baseline" type="double" value="96.99544996190284" />
   </node>
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find orb_slam2_ros)/ros/launch/airMuseum_stereo.rviz" />
 </launch>
